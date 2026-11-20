@@ -3,30 +3,47 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mercado del Campo · Semana 48 · 23–29 nov 2026</title>
-<meta name="description" content="Mercado del Campo: productos frescos de Cundinamarca y Boyacá. Semana 48 · 23–29 nov 2026.">
-<meta property="og:title" content="Mercado del Campo · Preventa Semana 48 · 23–29 nov 2026">
-<meta property="og:description" content="Mercado del Campo: productos frescos de Cundinamarca y Boyacá. Semana 48 · 23–29 nov 2026.">
+<title>Viocampo · Semana 48 · 23–29 nov 2026</title>
+<meta name="description" content="Viocampo: productos frescos de Cundinamarca y Boyacá. Semana 48 · 23–29 nov 2026.">
+<meta property="og:title" content="Viocampo · Preventa Semana 48 · 23–29 nov 2026">
+<meta property="og:description" content="Viocampo: productos frescos de Cundinamarca y Boyacá. Semana 48 · 23–29 nov 2026.">
 <meta name="theme-color" content="#2f6b3a">
 <style>
 :root{--verde:#2f6b3a;--verde-osc:#214d29;--crema:#faf7f0;--tierra:#7a5a3a;--texto:#1f2a1f;
---gris:#6b6f68;--borde:#e6e0d2;--wa:#1f8f4e;--wa-osc:#177340}
+--gris:#5f645c;--borde:#e6e0d2;--wa:#1f8f4e;--wa-osc:#177340;--alerta:#a14b1c;--suave:#f3efe5}
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
 body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--crema);
-color:var(--texto);line-height:1.45;padding-bottom:96px}
+color:var(--texto);line-height:1.45;padding-bottom:130px}
+button{font:inherit;cursor:pointer}
 header{background:var(--verde);color:#fff;padding:22px 18px 18px}
 header h1{margin:0;font-size:1.55rem;letter-spacing:-.01em}
 header p{margin:4px 0 0;opacity:.9;font-size:.95rem}
-.semana{display:inline-block;margin-top:12px;background:rgba(255,255,255,.16);border-radius:999px;
-padding:4px 12px;font-size:.85rem;font-weight:600}
-.info{max-width:720px;margin:0 auto;padding:14px 16px 2px;display:grid;gap:8px;
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{background:rgba(255,255,255,.16);border-radius:999px;padding:4px 12px;font-size:.85rem;font-weight:600}
+.chip.urgente{background:#f4c95d;color:#3d2c00}
+.chip.cerrado{background:#fff;color:var(--alerta)}
+.pasos{max-width:720px;margin:14px auto 0;padding:0 16px}
+.pasos ol{list-style:none;margin:0;padding:12px;background:#fff;border:1px solid var(--borde);border-radius:14px;
+display:grid;gap:10px;counter-reset:p}
+@media(min-width:640px){.pasos ol{grid-template-columns:repeat(3,1fr)}}
+.pasos li{counter-increment:p;display:flex;gap:10px;align-items:flex-start;font-size:.88rem}
+.pasos li::before{content:counter(p);flex:none;width:26px;height:26px;border-radius:50%;background:var(--verde);
+color:#fff;font-weight:700;display:grid;place-items:center;font-size:.85rem}
+.pasos b{display:block}
+.aviso-cierre{max-width:720px;margin:12px auto 0;padding:0 16px}
+.aviso-cierre div{background:#fff4ec;border:1px solid #f0cdb5;color:var(--alerta);border-radius:12px;padding:10px 12px;font-size:.9rem}
+.aviso-cierre a{color:inherit;font-weight:700}
+.info{max-width:720px;margin:0 auto;padding:12px 16px 2px;display:grid;gap:8px;
 grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
 .info div{background:#fff;border:1px solid var(--borde);border-radius:12px;padding:9px 12px;font-size:.85rem}
 .info b{display:block;color:var(--gris);font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em}
 main{max-width:720px;margin:0 auto;padding:12px 16px;display:grid;gap:12px}
 @media(min-width:640px){main{grid-template-columns:1fr 1fr}}
 .card{background:#fff;border:1px solid var(--borde);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.card.en-pedido{border-color:var(--verde);box-shadow:0 0 0 1px var(--verde) inset}
 .card h2{margin:0;font-size:1.12rem}
+.foto{display:block;width:calc(100% + 32px);max-width:none;height:auto;margin:-16px -16px 6px;aspect-ratio:4/3;
+object-fit:cover;border-radius:15px 15px 0 0;background:#efe9dc}
 .origen{color:var(--tierra);font-size:.88rem;font-weight:600}
 .productor{color:var(--gris);font-size:.82rem}
 .desc{margin:2px 0 0;font-size:.9rem}
@@ -34,91 +51,303 @@ main{max-width:720px;margin:0 auto;padding:12px 16px;display:grid;gap:12px}
 .precio strong{font-size:1.35rem}
 .precio span{color:var(--gris);font-size:.85rem}
 .cupo{font-size:.78rem;color:var(--gris)}
-.acciones{display:flex;gap:10px;align-items:center;margin-top:auto;padding-top:8px}
-.stepper{display:none;align-items:center;border:1px solid var(--borde);border-radius:12px;overflow:hidden}
-.js .stepper{display:flex}
-.stepper button{width:40px;height:44px;border:0;background:#f3efe5;font-size:1.25rem;color:var(--texto)}
-.stepper output{min-width:34px;text-align:center;font-weight:700}
-.btn-wa{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;
-background:var(--wa);color:#fff;text-decoration:none;font-weight:700;border-radius:12px;padding:0 14px;font-size:.95rem}
-.btn-wa:active{background:var(--wa-osc)}
+.etiquetas{display:flex;gap:6px;flex-wrap:wrap}
+.etiqueta{background:#eee;color:#555;border-radius:999px;padding:2px 10px;font-size:.75rem;font-weight:700}
+.etiqueta.pocos{background:#fde8d7;color:var(--alerta)}
+.acciones{margin-top:auto;padding-top:8px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px;width:100%;border:0;
+border-radius:12px;padding:0 14px;font-weight:700;font-size:.98rem;text-decoration:none}
+.btn-agregar{background:var(--verde);color:#fff}.btn-agregar:active{background:var(--verde-osc)}
+.btn-wa{background:var(--wa);color:#fff}.btn-wa:active{background:var(--wa-osc)}
+.btn-wa[aria-disabled=true]{background:#9fb8a6;pointer-events:none}
+.btn-sec{background:var(--suave);color:var(--texto)}
+.solo-js{display:none}.js .solo-js{display:flex}.js .sin-js{display:none}
+.stepper{align-items:center;justify-content:space-between;border:1px solid var(--verde);border-radius:12px;overflow:hidden;min-height:46px}
+.stepper button{width:52px;height:46px;border:0;background:var(--suave);font-size:1.35rem;color:var(--texto)}
+.stepper output{flex:1;text-align:center;font-weight:700;font-size:.95rem}
+.tope{font-size:.75rem;color:var(--alerta);min-height:1em;margin-top:4px}
 .agotado{opacity:.55}.agotado .acciones{display:none}
-.etiqueta{align-self:flex-start;background:#eee;color:#555;border-radius:999px;padding:2px 10px;font-size:.75rem;font-weight:700}
 .barra{position:fixed;left:0;right:0;bottom:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom));
-background:#fff;border-top:1px solid var(--borde);box-shadow:0 -4px 18px rgba(0,0,0,.08);display:none}
+background:#fff;border-top:1px solid var(--borde);box-shadow:0 -4px 18px rgba(0,0,0,.08);display:none;z-index:5}
 .barra.visible{display:block}
-.barra a{max-width:720px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;
-background:var(--wa);color:#fff;text-decoration:none;border-radius:14px;padding:12px 16px;font-weight:700}
-.barra small{display:block;font-weight:500;opacity:.9}
-.minimo{max-width:720px;margin:0 auto 6px;font-size:.8rem;color:#a14b1c;text-align:center}
+.barra-int{max-width:720px;margin:0 auto}
+.progreso{font-size:.8rem;margin:0 0 6px;color:var(--gris)}
+.progreso.falta{color:var(--alerta)}.progreso.ok{color:var(--verde);font-weight:600}
+.riel{height:6px;background:var(--suave);border-radius:99px;overflow:hidden;margin-bottom:8px}
+.riel i{display:block;height:100%;width:0;background:var(--verde);transition:width .25s}
+.barra .btn{justify-content:space-between}
+.barra small{display:block;font-weight:500;opacity:.9;font-size:.78rem}
+.fondo{position:fixed;inset:0;background:rgba(20,30,20,.45);display:none;z-index:9}
+.fondo.abierto{display:block}
+.hoja{position:fixed;left:0;right:0;bottom:0;max-height:92vh;overflow:auto;background:#fff;border-radius:18px 18px 0 0;
+padding:6px 16px calc(16px + env(safe-area-inset-bottom));z-index:10;display:none}
+.hoja.abierta{display:block}
+@media(min-width:720px){.hoja{left:50%;width:680px;margin-left:-340px}}
+.hoja-cab{position:sticky;top:0;background:#fff;display:flex;justify-content:space-between;align-items:center;
+padding:10px 0;border-bottom:1px solid var(--borde);margin-bottom:10px}
+.hoja-cab h2{margin:0;font-size:1.15rem}
+.cerrar{border:0;background:var(--suave);border-radius:50%;width:38px;height:38px;font-size:1.2rem}
+.hoja h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--gris);margin:16px 0 6px}
+.linea{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--suave)}
+.linea div:first-child{flex:1;font-size:.92rem}
+.linea small{display:block;color:var(--gris)}
+.linea .stepper{min-height:38px;width:122px;flex:none}
+.linea .stepper button{width:38px;height:38px;font-size:1.1rem}
+.totales{margin-top:8px;font-size:.92rem}
+.totales div{display:flex;justify-content:space-between;padding:3px 0}
+.totales .total{font-weight:700;font-size:1.05rem;border-top:1px solid var(--borde);margin-top:4px;padding-top:8px}
+.campo{display:block;margin:0 0 12px}
+.campo span{display:block;font-size:.85rem;font-weight:600;margin-bottom:4px}
+.campo input,.campo select,.campo textarea{width:100%;font:inherit;font-size:16px;padding:11px 12px;
+border:1px solid #cfc7b5;border-radius:10px;background:#fff;color:var(--texto)}
+.campo textarea{min-height:64px;resize:vertical}
+.campo input:focus,.campo select:focus,.campo textarea:focus{outline:2px solid var(--verde);border-color:var(--verde)}
+.campo.error input,.campo.error select{border-color:var(--alerta);background:#fff8f3}
+.campo em{display:none;color:var(--alerta);font-style:normal;font-size:.8rem;margin-top:3px}
+.campo.error em{display:block}
+.pagos{display:flex;gap:8px;flex-wrap:wrap}
+.pagos label{flex:1;min-width:110px;display:flex;gap:8px;align-items:center;border:1px solid #cfc7b5;border-radius:10px;
+padding:10px 12px;font-size:.92rem}
+.pagos input{width:18px;height:18px;margin:0;accent-color:var(--verde)}
+.pagos label:has(input:checked){border-color:var(--verde);background:#eef5ef}
+.recordar{display:flex;gap:8px;align-items:center;font-size:.85rem;color:var(--gris);margin:4px 0 14px}
+.ayuda{font-size:.82rem;color:var(--gris);text-align:center;margin:10px 0 0}
+.listo{text-align:center;padding:10px 4px}
+.listo .icono{font-size:2.4rem}
+.listo h2{margin:6px 0}
+.listo ol{text-align:left;font-size:.92rem;padding-left:20px}
+.listo .btn{margin-top:10px}
 footer{max-width:720px;margin:8px auto 0;padding:8px 16px 24px;color:var(--gris);font-size:.8rem;text-align:center}
+footer a{color:var(--verde);font-weight:600}
 svg{flex:none}
 </style>
 </head>
 <body>
 <header>
-<h1>Mercado del Campo</h1>
+<h1>Viocampo</h1>
 <p>Del productor a tu mesa · Preventa semanal</p>
-<span class="semana">Semana 48 · 23–29 nov 2026</span>
+<div class="chips"><span class="chip">Semana 48 · 23–29 nov 2026</span><span class="chip" id="chip-cierre">Cierre: Sabado 6:00 p. m.</span></div>
 </header>
-<section class="info"><div><b>Cierre de pedidos</b>Miércoles 6:00 p. m.</div><div><b>Entrega</b>Sábado</div><div><b>Zonas</b>Chapinero · Usaquén · Teusaquillo</div><div><b>Domicilio</b>Domicilio gratis en pedidos desde $60.000</div><div><b>Pedido mínimo</b>$30.000</div></section>
+<section class="pasos" aria-label="Cómo pedir">
+<ol>
+<li><span><b>Elige</b>Toca «Agregar» y ajusta con + y −.</span></li>
+<li><span><b>Revisa y envía</b>Escribe tus datos y se abre WhatsApp con el pedido listo. Solo toca enviar.</span></li>
+<li><span><b>Recibe</b>Te confirmamos por WhatsApp y entregamos el domingo. Pagas al recibir.</span></li>
+</ol>
+</section>
+<section class="aviso-cierre" id="aviso-cierre" hidden><div>Los pedidos de esta semana ya cerraron.
+<a href="https://wa.me/573116869174?text=Hola%20Viocampo%20%F0%9F%91%8B%20Quiero%20apartar%20productos%20para%20la%20pr%C3%B3xima%20preventa." target="_blank" rel="noopener">Escríbenos para apartar en la próxima preventa</a>.</div></section>
+<section class="info"><div><b>Cierre de pedidos</b>Sabado 6:00 p. m.</div><div><b>Entrega</b>Domingo</div><div><b>Zonas</b>Chapinero · Usaquén · Teusaquillo · San Cristóbal · Engativá · Suba</div><div><b>Domicilio</b>Domicilio gratis en pedidos desde $60.000</div><div><b>Pedido mínimo</b>$30.000</div></section>
 <main>
-<article class="card" data-sku="SKU-011"><h2>Aguacate papelillo</h2><div class="origen">📍 Vda. El Salitre · Viotá</div><div class="productor">Finca x</div><p class="desc">Aguacate papelillo</p><div class="precio"><strong>$10.000</strong><span>por bolsa 1 kg · $10.000/kg</span></div><div class="cupo">Cupo de la semana: 80 unidades</div><div class="acciones"><div class="stepper"><button type="button" data-menos aria-label="Quitar uno de Aguacate papelillo">−</button><output aria-live="polite">0</output><button type="button" data-mas aria-label="Agregar uno de Aguacate papelillo">+</button></div><a class="btn-wa" href="https://wa.me/573116869174?text=Hola%20Mercado%20del%20Campo%20%F0%9F%91%8B%20Quiero%20hacer%20este%20pedido%20de%20la%20preventa%20%28Semana%2048%20%C2%B7%2023%E2%80%9329%20nov%202026%29%3A%0A%0A%E2%80%A2%20Aguacate%20papelillo%3A%201%20%C3%97%20bolsa%201%20kg%20%281%20kg%29%20%E2%80%94%20%2410.000%0A%0ANombre%3A%0ADirecci%C3%B3n%20y%20barrio%3A%0AForma%20de%20pago%3A" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3z"/></svg>Pedir</a></div></article>
-<article class="card" data-sku="SKU-010"><h2>Banano común</h2><div class="origen">📍 Vda. El Salitre · Viotá</div><div class="productor">Finca x</div><p class="desc">Banano común</p><div class="precio"><strong>$3.000</strong><span>por bolsa 1 kg · $3.000/kg</span></div><div class="cupo">Cupo de la semana: 150 unidades</div><div class="acciones"><div class="stepper"><button type="button" data-menos aria-label="Quitar uno de Banano común">−</button><output aria-live="polite">0</output><button type="button" data-mas aria-label="Agregar uno de Banano común">+</button></div><a class="btn-wa" href="https://wa.me/573116869174?text=Hola%20Mercado%20del%20Campo%20%F0%9F%91%8B%20Quiero%20hacer%20este%20pedido%20de%20la%20preventa%20%28Semana%2048%20%C2%B7%2023%E2%80%9329%20nov%202026%29%3A%0A%0A%E2%80%A2%20Banano%20com%C3%BAn%3A%201%20%C3%97%20bolsa%201%20kg%20%281%20kg%29%20%E2%80%94%20%243.000%0A%0ANombre%3A%0ADirecci%C3%B3n%20y%20barrio%3A%0AForma%20de%20pago%3A" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3z"/></svg>Pedir</a></div></article>
-<article class="card" data-sku="SKU-014"><h2>Café orgánico</h2><div class="origen">📍 Vda. El Salitre · Viotá</div><div class="productor">Finca x</div><p class="desc">Café orgánico</p><div class="precio"><strong>$15.000</strong><span>por bolsa 1 kg · $15.000/kg</span></div><div class="cupo">Cupo de la semana: 1 unidades</div><div class="acciones"><div class="stepper"><button type="button" data-menos aria-label="Quitar uno de Café orgánico">−</button><output aria-live="polite">0</output><button type="button" data-mas aria-label="Agregar uno de Café orgánico">+</button></div><a class="btn-wa" href="https://wa.me/573116869174?text=Hola%20Mercado%20del%20Campo%20%F0%9F%91%8B%20Quiero%20hacer%20este%20pedido%20de%20la%20preventa%20%28Semana%2048%20%C2%B7%2023%E2%80%9329%20nov%202026%29%3A%0A%0A%E2%80%A2%20Caf%C3%A9%20org%C3%A1nico%3A%201%20%C3%97%20bolsa%201%20kg%20%281%20kg%29%20%E2%80%94%20%2415.000%0A%0ANombre%3A%0ADirecci%C3%B3n%20y%20barrio%3A%0AForma%20de%20pago%3A" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3z"/></svg>Pedir</a></div></article>
-<article class="card" data-sku="SKU-013"><h2>Cuajada campesina</h2><div class="origen">📍 Vda. El Salitre · Viotá</div><div class="productor">Finca x</div><p class="desc">Cuajada campesina</p><div class="precio"><strong>$9.000</strong><span>por unidad 500 g · $18.000/kg</span></div><div class="cupo">Cupo de la semana: 1 unidades</div><div class="acciones"><div class="stepper"><button type="button" data-menos aria-label="Quitar uno de Cuajada campesina">−</button><output aria-live="polite">0</output><button type="button" data-mas aria-label="Agregar uno de Cuajada campesina">+</button></div><a class="btn-wa" href="https://wa.me/573116869174?text=Hola%20Mercado%20del%20Campo%20%F0%9F%91%8B%20Quiero%20hacer%20este%20pedido%20de%20la%20preventa%20%28Semana%2048%20%C2%B7%2023%E2%80%9329%20nov%202026%29%3A%0A%0A%E2%80%A2%20Cuajada%20campesina%3A%201%20%C3%97%20unidad%20500%20g%20%28500%20g%29%20%E2%80%94%20%249.000%0A%0ANombre%3A%0ADirecci%C3%B3n%20y%20barrio%3A%0AForma%20de%20pago%3A" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3z"/></svg>Pedir</a></div></article>
-<article class="card" data-sku="SKU-015"><h2>Huevo criollo</h2><div class="origen">📍 Vda. El Salitre · Viotá</div><div class="productor">Finca x</div><p class="desc">Huevo criollo</p><div class="precio"><strong>$25.000</strong><span>por 24 unidades · $17.857/kg</span></div><div class="cupo">Cupo de la semana: 1 unidades</div><div class="acciones"><div class="stepper"><button type="button" data-menos aria-label="Quitar uno de Huevo criollo">−</button><output aria-live="polite">0</output><button type="button" data-mas aria-label="Agregar uno de Huevo criollo">+</button></div><a class="btn-wa" href="https://wa.me/573116869174?text=Hola%20Mercado%20del%20Campo%20%F0%9F%91%8B%20Quiero%20hacer%20este%20pedido%20de%20la%20preventa%20%28Semana%2048%20%C2%B7%2023%E2%80%9329%20nov%202026%29%3A%0A%0A%E2%80%A2%20Huevo%20criollo%3A%201%20%C3%97%2024%20unidades%20%281%2C4%20kg%29%20%E2%80%94%20%2425.000%0A%0ANombre%3A%0ADirecci%C3%B3n%20y%20barrio%3A%0AForma%20de%20pago%3A" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3z"/></svg>Pedir</a></div></article>
-<article class="card" data-sku="SKU-012"><h2>Mandarina</h2><div class="origen">📍 Vda. El Salitre · Viotá</div><div class="productor">Finca x</div><p class="desc">Mandarina</p><div class="precio"><strong>$5.900</strong><span>por kg</span></div><div class="cupo">Cupo de la semana: 40 kg</div><div class="acciones"><div class="stepper"><button type="button" data-menos aria-label="Quitar uno de Mandarina">−</button><output aria-live="polite">0</output><button type="button" data-mas aria-label="Agregar uno de Mandarina">+</button></div><a class="btn-wa" href="https://wa.me/573116869174?text=Hola%20Mercado%20del%20Campo%20%F0%9F%91%8B%20Quiero%20hacer%20este%20pedido%20de%20la%20preventa%20%28Semana%2048%20%C2%B7%2023%E2%80%9329%20nov%202026%29%3A%0A%0A%E2%80%A2%20Mandarina%3A%201%20kg%20%E2%80%94%20%245.900%0A%0ANombre%3A%0ADirecci%C3%B3n%20y%20barrio%3A%0AForma%20de%20pago%3A" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3z"/></svg>Pedir</a></div></article>
+<article class="card" data-sku="SKU-011"><h2>Aguacate papelillo</h2><div class="origen">📍 Vda. El Salitre · Viotá</div><div class="productor">Finca x</div><div class="precio"><strong>$10.000</strong><span>por bolsa 1 kg · $10.000/kg</span></div><div class="cupo">Disponibles esta semana: 80 unidades</div><div class="acciones"><button type="button" class="btn btn-agregar solo-js">Agregar al pedido</button><div class="stepper solo-js" style="display:none"><button type="button" data-menos aria-label="Quitar uno de Aguacate papelillo">−</button><output aria-live="polite"></output><button type="button" data-mas aria-label="Agregar uno de Aguacate papelillo">+</button></div><div class="tope" aria-live="polite"></div><a class="btn btn-wa sin-js" href="https://wa.me/573116869174?text=Hola%20Viocampo%20%F0%9F%91%8B%20Quiero%20pedir%20en%20la%20preventa%20%28Semana%2048%20%C2%B7%2023%E2%80%9329%20nov%202026%29%3A%0A%E2%80%A2%20Aguacate%20papelillo%3A%201%20%C3%97%20bolsa%201%20kg%20%281%20kg%29%20%E2%80%94%20%2410.000%0ANombre%3A%0AZona%3A%0ADirecci%C3%B3n%20y%20barrio%3A%0APago%3A" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3z"/></svg>Pedir por WhatsApp</a></div></article>
+<article class="card" data-sku="SKU-010"><h2>Banano común</h2><div class="origen">📍 Vda. El Salitre · Viotá</div><div class="productor">Finca x</div><div class="precio"><strong>$3.000</strong><span>por bolsa 1 kg · $3.000/kg</span></div><div class="cupo">Disponibles esta semana: 150 unidades</div><div class="acciones"><button type="button" class="btn btn-agregar solo-js">Agregar al pedido</button><div class="stepper solo-js" style="display:none"><button type="button" data-menos aria-label="Quitar uno de Banano común">−</button><output aria-live="polite"></output><button type="button" data-mas aria-label="Agregar uno de Banano común">+</button></div><div class="tope" aria-live="polite"></div><a class="btn btn-wa sin-js" href="https://wa.me/573116869174?text=Hola%20Viocampo%20%F0%9F%91%8B%20Quiero%20pedir%20en%20la%20preventa%20%28Semana%2048%20%C2%B7%2023%E2%80%9329%20nov%202026%29%3A%0A%E2%80%A2%20Banano%20com%C3%BAn%3A%201%20%C3%97%20bolsa%201%20kg%20%281%20kg%29%20%E2%80%94%20%243.000%0ANombre%3A%0AZona%3A%0ADirecci%C3%B3n%20y%20barrio%3A%0APago%3A" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3z"/></svg>Pedir por WhatsApp</a></div></article>
+<article class="card" data-sku="SKU-014"><div class="etiquetas"><span class="etiqueta pocos">¡Quedan pocos!</span></div><h2>Café orgánico</h2><div class="origen">📍 Vda. El Salitre · Viotá</div><div class="productor">Finca x</div><div class="precio"><strong>$15.000</strong><span>por bolsa 1 kg · $15.000/kg</span></div><div class="cupo">Disponibles esta semana: 1 unidad</div><div class="acciones"><button type="button" class="btn btn-agregar solo-js">Agregar al pedido</button><div class="stepper solo-js" style="display:none"><button type="button" data-menos aria-label="Quitar uno de Café orgánico">−</button><output aria-live="polite"></output><button type="button" data-mas aria-label="Agregar uno de Café orgánico">+</button></div><div class="tope" aria-live="polite"></div><a class="btn btn-wa sin-js" href="https://wa.me/573116869174?text=Hola%20Viocampo%20%F0%9F%91%8B%20Quiero%20pedir%20en%20la%20preventa%20%28Semana%2048%20%C2%B7%2023%E2%80%9329%20nov%202026%29%3A%0A%E2%80%A2%20Caf%C3%A9%20org%C3%A1nico%3A%201%20%C3%97%20bolsa%201%20kg%20%281%20kg%29%20%E2%80%94%20%2415.000%0ANombre%3A%0AZona%3A%0ADirecci%C3%B3n%20y%20barrio%3A%0APago%3A" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3z"/></svg>Pedir por WhatsApp</a></div></article>
+<article class="card" data-sku="SKU-013"><div class="etiquetas"><span class="etiqueta pocos">¡Quedan pocos!</span></div><h2>Cuajada campesina</h2><div class="origen">📍 Vda. El Salitre · Viotá</div><div class="productor">Finca x</div><div class="precio"><strong>$9.000</strong><span>por unidad 500 g · $18.000/kg</span></div><div class="cupo">Disponibles esta semana: 1 unidad</div><div class="acciones"><button type="button" class="btn btn-agregar solo-js">Agregar al pedido</button><div class="stepper solo-js" style="display:none"><button type="button" data-menos aria-label="Quitar uno de Cuajada campesina">−</button><output aria-live="polite"></output><button type="button" data-mas aria-label="Agregar uno de Cuajada campesina">+</button></div><div class="tope" aria-live="polite"></div><a class="btn btn-wa sin-js" href="https://wa.me/573116869174?text=Hola%20Viocampo%20%F0%9F%91%8B%20Quiero%20pedir%20en%20la%20preventa%20%28Semana%2048%20%C2%B7%2023%E2%80%9329%20nov%202026%29%3A%0A%E2%80%A2%20Cuajada%20campesina%3A%201%20%C3%97%20unidad%20500%20g%20%28500%20g%29%20%E2%80%94%20%249.000%0ANombre%3A%0AZona%3A%0ADirecci%C3%B3n%20y%20barrio%3A%0APago%3A" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3z"/></svg>Pedir por WhatsApp</a></div></article>
+<article class="card" data-sku="SKU-015"><div class="etiquetas"><span class="etiqueta pocos">¡Quedan pocos!</span></div><h2>Huevo criollo</h2><div class="origen">📍 Vda. El Salitre · Viotá</div><div class="productor">Finca x</div><div class="precio"><strong>$25.000</strong><span>por 24 unidades · $17.857/kg</span></div><div class="cupo">Disponibles esta semana: 1 unidad</div><div class="acciones"><button type="button" class="btn btn-agregar solo-js">Agregar al pedido</button><div class="stepper solo-js" style="display:none"><button type="button" data-menos aria-label="Quitar uno de Huevo criollo">−</button><output aria-live="polite"></output><button type="button" data-mas aria-label="Agregar uno de Huevo criollo">+</button></div><div class="tope" aria-live="polite"></div><a class="btn btn-wa sin-js" href="https://wa.me/573116869174?text=Hola%20Viocampo%20%F0%9F%91%8B%20Quiero%20pedir%20en%20la%20preventa%20%28Semana%2048%20%C2%B7%2023%E2%80%9329%20nov%202026%29%3A%0A%E2%80%A2%20Huevo%20criollo%3A%201%20%C3%97%2024%20unidades%20%281%2C4%20kg%29%20%E2%80%94%20%2425.000%0ANombre%3A%0AZona%3A%0ADirecci%C3%B3n%20y%20barrio%3A%0APago%3A" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3z"/></svg>Pedir por WhatsApp</a></div></article>
+<article class="card" data-sku="SKU-012"><h2>Mandarina</h2><div class="origen">📍 Vda. El Salitre · Viotá</div><div class="productor">Finca x</div><div class="precio"><strong>$5.900</strong><span>por kg</span></div><div class="cupo">Disponibles esta semana: 40 kg</div><div class="acciones"><button type="button" class="btn btn-agregar solo-js">Agregar al pedido</button><div class="stepper solo-js" style="display:none"><button type="button" data-menos aria-label="Quitar uno de Mandarina">−</button><output aria-live="polite"></output><button type="button" data-mas aria-label="Agregar uno de Mandarina">+</button></div><div class="tope" aria-live="polite"></div><a class="btn btn-wa sin-js" href="https://wa.me/573116869174?text=Hola%20Viocampo%20%F0%9F%91%8B%20Quiero%20pedir%20en%20la%20preventa%20%28Semana%2048%20%C2%B7%2023%E2%80%9329%20nov%202026%29%3A%0A%E2%80%A2%20Mandarina%3A%201%20kg%20%E2%80%94%20%245.900%0ANombre%3A%0AZona%3A%0ADirecci%C3%B3n%20y%20barrio%3A%0APago%3A" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3z"/></svg>Pedir por WhatsApp</a></div></article>
 </main>
 <footer>
 <p>Precios con empaque incluido. Pagas contra entrega por Nequi o efectivo.</p>
-<p>Elige cantidades con + y − y envía todo en un solo mensaje, o toca «Pedir» en un producto.</p>
-<p>Actualizado 19/11/2026 22:59</p>
+<p>¿Dudas? <a href="https://wa.me/573116869174?text=Hola%20Viocampo%20%F0%9F%91%8B%20Tengo%20una%20pregunta%20sobre%20la%20preventa." target="_blank" rel="noopener">Escríbenos por WhatsApp</a></p>
+<p>Actualizado 20/11/2026 14:31</p>
 </footer>
 <div class="barra" id="barra">
-<p class="minimo" id="minimo" hidden></p>
-<a id="barra-link" href="#" target="_blank" rel="noopener">
-<span><span id="barra-n"></span><small>Enviar pedido por WhatsApp</small></span>
+<div class="barra-int">
+<p class="progreso" id="progreso" aria-live="polite"></p>
+<div class="riel" id="riel" hidden><i></i></div>
+<button type="button" class="btn btn-wa" id="barra-btn">
+<span><span id="barra-n"></span><small>Revisar pedido →</small></span>
 <span id="barra-total"></span>
-</a>
+</button>
 </div>
-<script type="application/json" id="datos">{"numero": "573116869174", "encabezado": "Hola Mercado del Campo 👋 Quiero hacer este pedido de la preventa (Semana 48 · 23–29 nov 2026):\n\n", "pie": "\n\nNombre:\nDirección y barrio:\nForma de pago:", "minimo": 30000, "items": [{"sku": "SKU-011", "producto": "Aguacate papelillo", "unidad": "bolsa 1 kg", "contenido_kg": 1.0, "precio": 10000, "cupo": 80}, {"sku": "SKU-010", "producto": "Banano común", "unidad": "bolsa 1 kg", "contenido_kg": 1.0, "precio": 3000, "cupo": 150}, {"sku": "SKU-014", "producto": "Café orgánico", "unidad": "bolsa 1 kg", "contenido_kg": 1.0, "precio": 15000, "cupo": 1}, {"sku": "SKU-013", "producto": "Cuajada campesina", "unidad": "unidad 500 g", "contenido_kg": 0.5, "precio": 9000, "cupo": 1}, {"sku": "SKU-015", "producto": "Huevo criollo", "unidad": "24 unidades", "contenido_kg": 1.4, "precio": 25000, "cupo": 1}, {"sku": "SKU-012", "producto": "Mandarina", "unidad": "kg", "contenido_kg": 1.0, "precio": 5900, "cupo": 40}]}</script>
+</div>
+<div class="fondo" id="fondo"></div>
+<section class="hoja" id="hoja" role="dialog" aria-modal="true" aria-labelledby="hoja-titulo">
+<div id="paso-pedido">
+<div class="hoja-cab"><h2 id="hoja-titulo">Revisa tu pedido</h2><button type="button" class="cerrar" aria-label="Cerrar">✕</button></div>
+<div id="lineas"></div>
+<div class="totales">
+<div><span>Productos</span><span id="t-sub"></span></div>
+<div><span>Domicilio</span><span id="t-dom"></span></div>
+<div class="total"><span>Total estimado</span><span id="t-total"></span></div>
+</div>
+<p class="progreso falta" id="hoja-minimo" hidden></p>
+<h3>¿A dónde lo llevamos?</h3>
+<label class="campo" id="c-nombre"><span>Tu nombre</span><input id="f-nombre" autocomplete="name" required><em>Escribe tu nombre</em></label>
+<label class="campo" id="c-zona"><span>Zona de entrega</span><select id="f-zona" required><option value="">Elige tu zona…</option><option value="Chapinero">Chapinero</option><option value="Usaquén">Usaquén</option><option value="Teusaquillo">Teusaquillo</option><option value="San Cristóbal">San Cristóbal</option><option value="Engativá">Engativá</option><option value="Suba">Suba</option></select><em>Elige tu zona</em></label>
+<label class="campo" id="c-dir"><span>Dirección y barrio</span><textarea id="f-dir" autocomplete="street-address" rows="2" placeholder="Ej.: Cra 7 # 45-10, apto 302, Chapinero Alto" required></textarea><em>Escribe la dirección de entrega</em></label>
+<div class="campo" id="c-pago"><span>¿Cómo vas a pagar?</span><div class="pagos"><label><input type="radio" name="pago" value="Nequi"> Nequi</label><label><input type="radio" name="pago" value="Efectivo"> Efectivo</label></div><em>Elige cómo vas a pagar</em></div>
+<label class="campo"><span>Notas (opcional)</span><textarea id="f-notas" rows="2" placeholder="Ej.: dejar en portería, aguacates para el domingo"></textarea></label>
+<label class="recordar"><input type="checkbox" id="f-recordar"> Recordar mis datos en este celular</label>
+<a href="#" class="btn btn-wa" id="enviar" role="button"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3z"/></svg>Enviar pedido por WhatsApp</a>
+<p class="ayuda">Se abre WhatsApp con tu pedido escrito. Revísalo y toca enviar ➤. Precios con empaque incluido. Pagas contra entrega por Nequi o efectivo.</p>
+</div>
+<div id="paso-listo" class="listo" hidden>
+<div class="hoja-cab"><h2>¡Casi listo!</h2><button type="button" class="cerrar" aria-label="Cerrar">✕</button></div>
+<div class="icono">📲</div>
+<p>Tu pedido <b id="listo-codigo"></b> quedó escrito en WhatsApp.</p>
+<ol>
+<li>En WhatsApp, toca <b>enviar ➤</b>. Si no lo envías, no nos llega.</li>
+<li>Te respondemos para confirmar el pedido y la hora de entrega.</li>
+<li>Pagas al recibir.</li>
+</ol>
+<a class="btn btn-wa" id="reabrir" href="#" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3z"/></svg>No se abrió WhatsApp: abrir otra vez</a>
+<button type="button" class="btn btn-agregar" id="vaciar">Ya lo envié · vaciar pedido</button>
+<button type="button" class="btn btn-sec" id="volver">Volver y cambiar algo</button>
+</div>
+</section>
+<script type="application/json" id="datos">{"numero": "573116869174", "saludo": "Hola Viocampo 👋", "semana": "2026-W48", "semana_txt": "Semana 48 · 23–29 nov 2026", "prefijo": "W48", "entrega": "Domingo", "cierre": "2026-11-28T18:00:00-05:00", "minimo": 30000, "gratis": 60000, "domicilio": "Domicilio gratis en pedidos desde $60.000", "zonas": ["Chapinero", "Usaquén", "Teusaquillo", "San Cristóbal", "Engativá", "Suba"], "items": [{"sku": "SKU-011", "producto": "Aguacate papelillo", "unidad": "bolsa 1 kg", "contenido_kg": 1.0, "precio": 10000, "cupo": 80}, {"sku": "SKU-010", "producto": "Banano común", "unidad": "bolsa 1 kg", "contenido_kg": 1.0, "precio": 3000, "cupo": 150}, {"sku": "SKU-014", "producto": "Café orgánico", "unidad": "bolsa 1 kg", "contenido_kg": 1.0, "precio": 15000, "cupo": 1}, {"sku": "SKU-013", "producto": "Cuajada campesina", "unidad": "unidad 500 g", "contenido_kg": 0.5, "precio": 9000, "cupo": 1}, {"sku": "SKU-015", "producto": "Huevo criollo", "unidad": "24 unidades", "contenido_kg": 1.4, "precio": 25000, "cupo": 1}, {"sku": "SKU-012", "producto": "Mandarina", "unidad": "kg", "contenido_kg": 1.0, "precio": 5900, "cupo": 40}]}</script>
 <script>
 document.documentElement.classList.add('js');
 (function(){
   var D=JSON.parse(document.getElementById('datos').textContent);
-  var carrito={};
+  var POR_SKU={};D.items.forEach(function(it){POR_SKU[it.sku]=it;});
+  var CLAVE_CARRITO='carrito-'+D.semana, CLAVE_CLIENTE='cliente-preventa';
+  var carrito={}, cerrado=false, ultimoEnlace='';
+  function $(s,r){return (r||document).querySelector(s);}
+  function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
+  function leer(k){try{return JSON.parse(localStorage.getItem(k)||'null');}catch(e){return null;}}
+  function guardar(k,v){try{if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
   function cop(v){return '$'+Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.');}
   function kg(v){if(Math.abs(v-Math.round(v))<1e-9)return Math.round(v)+' kg';
     if(v<1)return Math.round(v*1000)+' g';return v.toFixed(2).replace(/0+$/,'').replace(/\.$/,'').replace('.',',')+' kg';}
-  function linea(it,c){var esKg=/^(kg|kilo|kilogramo)$/i.test(it.unidad);
-    var l=esKg&&it.contenido_kg?'• '+it.producto+': '+kg(it.contenido_kg*c)
-      :'• '+it.producto+': '+c+' × '+it.unidad+(it.contenido_kg?' ('+kg(it.contenido_kg*c)+')':'');
-    return l+' — '+cop(it.precio*c);}
-  function url(lineas,total){var m=D.encabezado+lineas.join('\n');
-    if(total!==null)m+='\n\nTotal estimado: '+cop(total);
-    return 'https://wa.me/'+D.numero+'?text='+encodeURIComponent(m+D.pie);}
-  function pintar(){
-    var lineas=[],total=0,n=0;
-    D.items.forEach(function(it){var c=carrito[it.sku]||0;if(c>0){lineas.push(linea(it,c));total+=it.precio*c;n+=c;}});
-    var barra=document.getElementById('barra');
-    barra.classList.toggle('visible',n>0);
-    if(n>0){document.getElementById('barra-n').textContent=n+(n===1?' producto':' productos');
-      document.getElementById('barra-total').textContent=cop(total);
-      document.getElementById('barra-link').href=url(lineas,total);
-      var aviso=document.getElementById('minimo');
-      if(D.minimo&&total<D.minimo){aviso.textContent='Pedido mínimo '+cop(D.minimo)+'. Te faltan '+cop(D.minimo-total)+'.';aviso.hidden=false;}
-      else aviso.hidden=true;}
+  function esKg(u){return /^(kg|kilo|kilogramo)$/i.test(u);}
+  function cantidadTxt(it,c){
+    if(esKg(it.unidad)&&it.contenido_kg)return kg(it.contenido_kg*c);
+    return c+' × '+it.unidad+(it.contenido_kg?' ('+kg(it.contenido_kg*c)+')':'');}
+  function linea(it,c){return '• '+it.producto+': '+cantidadTxt(it,c)+' — '+cop(it.precio*c);}
+  function resumen(){var l=[],t=0,n=0;
+    D.items.forEach(function(it){var c=carrito[it.sku]||0;if(c>0){l.push({it:it,c:c});t+=it.precio*c;n+=c;}});
+    return {lineas:l,total:t,n:n};}
+
+  // ---------- código de pedido: corto, sin letras confusas (0/O, 1/I)
+  function codigo(){var a='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',s='';
+    for(var i=0;i<4;i++)s+=a.charAt(Math.floor(Math.random()*a.length));return D.prefijo+'-'+s;}
+
+  // ---------- cuenta regresiva del cierre
+  function textoFalta(ms){var m=Math.floor(ms/60000),d=Math.floor(m/1440),h=Math.floor(m%1440/60),mi=m%60;
+    if(d>0)return d+(d===1?' día ':' días ')+h+' h';if(h>0)return h+' h '+mi+' min';return mi+' min';}
+  function relojCierre(){
+    if(!D.cierre)return;var falta=new Date(D.cierre).getTime()-Date.now(),chip=$('#chip-cierre');
+    cerrado=falta<=0;
+    if(cerrado){chip.textContent='Pedidos cerrados';chip.className='chip cerrado';$('#aviso-cierre').hidden=false;}
+    else{chip.textContent='Cierra en '+textoFalta(falta);chip.className=falta<86400000?'chip urgente':'chip';}
+    document.body.classList.toggle('cerrado',cerrado);pintar();
   }
-  document.querySelectorAll('.card[data-sku]').forEach(function(card){
-    var sku=card.getAttribute('data-sku');var it=D.items.filter(function(x){return x.sku===sku;})[0];
-    if(!it)return;var out=card.querySelector('output'),a=card.querySelector('.btn-wa');
-    function set(c){if(c<0)c=0;if(it.cupo&&c>it.cupo)c=it.cupo;carrito[sku]=c;out.textContent=c;
-      a.href=url([linea(it,Math.max(c,1))],null);pintar();}
-    card.querySelector('[data-menos]').addEventListener('click',function(){set((carrito[sku]||0)-1);});
-    card.querySelector('[data-mas]').addEventListener('click',function(){set((carrito[sku]||0)+1);});
-    set(0);
+
+  // ---------- tarjetas
+  function pintarTarjeta(card){var sku=card.getAttribute('data-sku'),it=POR_SKU[sku];if(!it)return;
+    var c=carrito[sku]||0;
+    $('.btn-agregar',card).style.display=c>0||cerrado?'none':'';
+    $('.stepper',card).style.display=c>0?'':'none';
+    $('output',card).textContent=c>0?(esKg(it.unidad)&&it.contenido_kg?kg(it.contenido_kg*c):c+' en el pedido'):'';
+    $('[data-mas]',card).disabled=!!(it.cupo&&c>=it.cupo);
+    $('.tope',card).textContent=it.cupo&&c>=it.cupo?'Es todo lo que hay esta semana':'';
+    card.classList.toggle('en-pedido',c>0);}
+  function cambiar(sku,delta){var it=POR_SKU[sku];if(!it||cerrado)return;
+    var c=(carrito[sku]||0)+delta;if(c<0)c=0;if(it.cupo&&c>it.cupo)c=it.cupo;
+    if(c>0)carrito[sku]=c;else delete carrito[sku];
+    guardar(CLAVE_CARRITO,carrito);pintar();}
+
+  // ---------- barra inferior: total, pedido mínimo y domicilio gratis
+  function progreso(total){
+    if(D.minimo&&total<D.minimo)return {cls:'falta',txt:'Pedido mínimo '+cop(D.minimo)+' · te faltan '+cop(D.minimo-total),p:total/D.minimo,bloquea:true};
+    if(D.gratis&&total<D.gratis)return {cls:'',txt:'Te faltan '+cop(D.gratis-total)+' para domicilio gratis 🚚',p:total/D.gratis,bloquea:false};
+    if(D.gratis)return {cls:'ok',txt:'¡Tienes domicilio gratis! 🎉',p:1,bloquea:false};
+    return null;}
+  function pintar(){
+    $$('.card[data-sku]').forEach(pintarTarjeta);
+    var r=resumen(),barra=$('#barra');barra.classList.toggle('visible',r.n>0&&!cerrado);
+    if(r.n>0){$('#barra-n').textContent=r.lineas.length+(r.lineas.length===1?' producto':' productos');
+      $('#barra-total').textContent=cop(r.total);
+      var pr=progreso(r.total),el=$('#progreso');
+      if(pr){el.textContent=pr.txt;el.className='progreso '+pr.cls;$('#riel').hidden=false;
+        $('#riel i').style.width=Math.min(100,Math.round(pr.p*100))+'%';}
+      else{el.textContent='';$('#riel').hidden=true;}}
+    if($('#hoja').classList.contains('abierta')&&$('#paso-listo').hidden)pintarHoja();
+  }
+
+  // ---------- hoja "Revisa tu pedido"
+  function pintarHoja(){
+    var r=resumen(),cont=$('#lineas');cont.innerHTML='';
+    if(!r.n){cont.innerHTML='<p>Tu pedido está vacío.</p>';}
+    r.lineas.forEach(function(x){var d=document.createElement('div');d.className='linea';
+      d.innerHTML='<div></div><div class="stepper solo-js"><button type="button" aria-label="Quitar uno">−</button><output></output><button type="button" aria-label="Agregar uno">+</button></div>';
+      d.firstChild.textContent=x.it.producto;var sm=document.createElement('small');
+      sm.textContent=cantidadTxt(x.it,x.c)+' · '+cop(x.it.precio*x.c);d.firstChild.appendChild(sm);
+      $('output',d).textContent=x.c;var b=$$('button',d);
+      b[0].addEventListener('click',function(){cambiar(x.it.sku,-1);pintarHoja();});
+      b[1].disabled=!!(x.it.cupo&&x.c>=x.it.cupo);
+      b[1].addEventListener('click',function(){cambiar(x.it.sku,1);pintarHoja();});
+      cont.appendChild(d);});
+    var dom=D.gratis?(r.total>=D.gratis?'Gratis':'Te lo confirmamos por WhatsApp'):(D.domicilio||'Te lo confirmamos');
+    $('#t-sub').textContent=cop(r.total);$('#t-dom').textContent=dom;$('#t-total').textContent=cop(r.total);
+    var pr=progreso(r.total),m=$('#hoja-minimo');
+    m.hidden=!(pr&&pr.bloquea);if(pr&&pr.bloquea)m.textContent=pr.txt;
+    actualizarEnvio();
+  }
+  function valorPago(){var x=$('input[name=pago]:checked');return x?x.value:'';}
+  function validar(mostrar){var ok=true;
+    [['#f-nombre','#c-nombre'],['#f-zona','#c-zona'],['#f-dir','#c-dir']].forEach(function(p){
+      var v=$(p[0]).value.trim(),mal=v.length<2;if(mal)ok=false;if(mostrar||!mal)$(p[1]).classList.toggle('error',mal&&mostrar);});
+    var mp=!valorPago();if(mp)ok=false;if(mostrar||!mp)$('#c-pago').classList.toggle('error',mp&&mostrar);
+    return ok;}
+  function mensaje(cod){var r=resumen(),out=[];
+    out.push(D.saludo+' Quiero hacer un pedido de la preventa.');
+    out.push('Pedido '+cod+' · '+D.semana_txt+(D.entrega?' · Entrega '+D.entrega:''));
+    r.lineas.forEach(function(x){out.push(linea(x.it,x.c));});
+    out.push('Total estimado: '+cop(r.total)+(D.gratis&&r.total>=D.gratis?' (domicilio gratis)':''));
+    out.push('Nombre: '+$('#f-nombre').value.trim());
+    out.push('Zona: '+$('#f-zona').value);
+    out.push('Dirección y barrio: '+$('#f-dir').value.trim().replace(/\s*\n+\s*/g,', '));
+    out.push('Pago: '+valorPago());
+    var n=$('#f-notas').value.trim().replace(/\s*\n+\s*/g,'. ');if(n)out.push('Notas: '+n);
+    return out.join('\n');}   // sin líneas en blanco (ver procesar_pedidos_ollama.py)
+  function actualizarEnvio(){var r=resumen(),pr=progreso(r.total),btn=$('#enviar');
+    var bloq=!r.n||cerrado||(pr&&pr.bloquea);btn.setAttribute('aria-disabled',bloq?'true':'false');}
+  function datosCliente(){return {nombre:$('#f-nombre').value.trim(),zona:$('#f-zona').value,
+    dir:$('#f-dir').value.trim(),pago:valorPago()};}
+  function cargarCliente(){var c=leer(CLAVE_CLIENTE);if(!c)return;
+    $('#f-nombre').value=c.nombre||'';$('#f-dir').value=c.dir||'';
+    if(c.zona&&D.zonas.indexOf(c.zona)>=0)$('#f-zona').value=c.zona;
+    $$('input[name=pago]').forEach(function(x){x.checked=x.value===c.pago;});$('#f-recordar').checked=true;}
+
+  var focoPrevio=null;
+  function abrir(){focoPrevio=document.activeElement;$('#paso-pedido').hidden=false;$('#paso-listo').hidden=true;
+    pintarHoja();$('#fondo').classList.add('abierto');$('#hoja').classList.add('abierta');
+    document.body.style.overflow='hidden';$('#hoja .cerrar').focus();}
+  function cerrar(){$('#fondo').classList.remove('abierto');$('#hoja').classList.remove('abierta');
+    document.body.style.overflow='';if(focoPrevio)focoPrevio.focus();}
+
+  // ---------- eventos
+  $$('.card[data-sku]').forEach(function(card){var sku=card.getAttribute('data-sku');
+    $('.btn-agregar',card).addEventListener('click',function(){cambiar(sku,1);$('[data-mas]',card).focus();});
+    $('[data-menos]',card).addEventListener('click',function(){cambiar(sku,-1);});
+    $('[data-mas]',card).addEventListener('click',function(){cambiar(sku,1);});});
+  $('#barra-btn').addEventListener('click',abrir);
+  $('#fondo').addEventListener('click',cerrar);
+  $$('#hoja .cerrar').forEach(function(b){b.addEventListener('click',cerrar);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&$('#hoja').classList.contains('abierta'))cerrar();});
+  ['#f-nombre','#f-zona','#f-dir'].forEach(function(s){$(s).addEventListener('input',function(){validar(false);});});
+  $$('input[name=pago]').forEach(function(x){x.addEventListener('change',function(){validar(false);});});
+  $('#enviar').addEventListener('click',function(e){
+    e.preventDefault();var r=resumen(),pr=progreso(r.total);
+    if(cerrado||!r.n||(pr&&pr.bloquea)){pintarHoja();return;}
+    if(!validar(true)){var mal=$('.campo.error input,.campo.error select');if(mal)mal.focus();return;}
+    guardar(CLAVE_CLIENTE,$('#f-recordar').checked?datosCliente():null);
+    var cod=codigo();ultimoEnlace='https://wa.me/'+D.numero+'?text='+encodeURIComponent(mensaje(cod));
+    $('#listo-codigo').textContent=cod;$('#reabrir').href=ultimoEnlace;
+    $('#paso-pedido').hidden=true;$('#paso-listo').hidden=false;
+    window.open(ultimoEnlace,'_blank')||(location.href=ultimoEnlace);
   });
+  $('#vaciar').addEventListener('click',function(){carrito={};guardar(CLAVE_CARRITO,null);pintar();cerrar();});
+  $('#volver').addEventListener('click',function(){$('#paso-pedido').hidden=false;$('#paso-listo').hidden=true;pintarHoja();});
+
+  // ---------- arranque: recupera el carrito de esta semana (si el cliente cerró la página)
+  var guardado=leer(CLAVE_CARRITO)||{};
+  Object.keys(guardado).forEach(function(sku){var it=POR_SKU[sku],c=parseInt(guardado[sku],10);
+    if(it&&c>0)carrito[sku]=it.cupo?Math.min(c,it.cupo):c;});
+  cargarCliente();relojCierre();pintar();setInterval(relojCierre,30000);
 })();
 </script>
 </body>
